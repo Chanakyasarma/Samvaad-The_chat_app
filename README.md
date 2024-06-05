@@ -4,7 +4,8 @@ Samvaad is a realtime chat app built with Vite, React, TypeScript, Firebase, and
 
 ## 🚀 Features
 
-- 🗝 Sign in with Google (authentication)
+- 🗝 Login / SignUp or Sign in with Google (authentication)
+- 📸 Upload profile pic
 - 👤 View your own profile, email, name, id, etc.
 - 🗨 Create conversations (1-on-1 or group)
 - 📬 Users can send:
@@ -42,13 +43,6 @@ Then it was the smaller details, like creating a drag and drop for images and fi
 
 The most challenging part was figuring out how the data structure should be. One new thing I learned was indexing in Firebase. That was new to me and something I can take with me into the future.
 
-## 🤔 How Can It Be Improved?
-
-It would be amazing if users were able to send GIFs and stickers, just like on WhatsApp. Also, being able to send voice messages and videos to each other would greatly improve the project. Adding testing would be beneficial as well, something I definitely plan to do next time.
-
-## 🐛 Current Bug
-
-So far, I'm not really sure if there are any bugs. However, there might be some issues on the mobile version. I tested it out on my phone (iPhone 14 Pro Max), and so far it looks good there, but on smaller devices or Android phones, it might look a bit odd. I'm not sure from that side, but there might be some bugs to iron out.
 
 
 <details>
