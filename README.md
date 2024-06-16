@@ -4,7 +4,7 @@ Samvaad is a realtime chat app built with Vite, React, TypeScript, Firebase, and
 
 ## 🚀 Features
 
-- 🗝 Login / SignUp or Sign in with Google (Authentication)
+- 🗝 Login / SignUp(Authentication)
 - 📸 Upload profile pic
 - 👤 View your own profile, email, name, id, etc.
 - 🗨 Create conversations (1-on-1 or group)
