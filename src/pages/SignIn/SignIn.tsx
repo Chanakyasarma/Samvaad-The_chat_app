@@ -213,19 +213,7 @@ export default function SignIn() {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    setLoading(true);
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(firebaseAuth, provider);
-    } catch (error: unknown) {
-      console.error("Google Sign In Error:", error);
-      toast.error("Sign In With Google Failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  
   if (currentUser) return <Navigate to="/" />;
 
   return (
@@ -266,7 +254,7 @@ export default function SignIn() {
                     required
                   />
                   <Button disabled={loading} onClick={handleEmailSignIn} style={{ marginTop: "30px" }}>Login</Button>
-                  <Button disabled={loading} onClick={handleGoogleSignIn}>Sign In With Google</Button>
+                  
                 </div>
               ) : (
                 <div>
