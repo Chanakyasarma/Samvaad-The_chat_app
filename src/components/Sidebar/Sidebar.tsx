@@ -78,14 +78,7 @@ export function Sidebar() {
       img.src = IMAGE_PROXY(currentUser.photoURL);
     }
   }, [currentUser]);
-  const randomRange = (min: number, max: number) => {
-    return Math.random() * (max - min) + min;
-  };
-
-  // Function to select a random item from a list
-  const sample = <T,>(list: T[]): T => {
-    return list[Math.floor(Math.random() * list.length)];
-  };
+  
 
   return (
     <StyledSideBar theme={theme}>
