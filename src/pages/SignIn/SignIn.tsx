@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { firebaseAuth, firebaseFirestore, firebaseStorage } from "../../firebase/firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
 import { useUserStore } from "../../hooks";
