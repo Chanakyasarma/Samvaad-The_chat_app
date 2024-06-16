@@ -31,10 +31,20 @@ const FormWrapper = styled.form`
   flex: 1;
   width: 500px;
   padding: 20px 30px;
-  background-color: #361d32;
+  background-color: #001D4A;
   max-height: 500px;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    width: 300px;
+  }
+
 `;
 
 const FormGroup = styled.div`
@@ -45,7 +55,7 @@ const Label = styled.label`
   display: block;
   font-size: 1rem;
   margin-bottom: 5px;
-  color: #f55951;
+  color: #ECA400;
 `;
 
 const Input = styled.input`
@@ -67,14 +77,14 @@ const FileInputLabel = styled.label`
   display: block;
   padding: 10px;
   font-size: 1rem;
-  background-color: #f55951;
+  background-color: #ECA400;
   color: white;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #543c52;
+    background-color: #006992;
   }
   .indicator {
     margin-left: 10px;
@@ -93,7 +103,7 @@ const Button = styled.button`
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  background-color: #f55951;
+  background-color: #ECA400;
   color: white;
   border: none;
   border-radius: 5px;
@@ -102,7 +112,7 @@ const Button = styled.button`
   margin-bottom: 10px; /* Add margin here */
 
   &:hover {
-    background-color: #543c52;
+    background-color: #006992;
   }
 `;
 
@@ -118,16 +128,16 @@ const RadioLabel = styled.label`
   cursor: pointer;
   margin: 1px;
   padding: 10px;
-  border: 2px solid #f55951;
+  border: 2px solid #ECA400;
   border-radius: 10px;
-  color: #f55951;
+  color: #ECA400;
 
   input {
     display: none;
   }
 
   input:checked + span {
-    background-color: #f55951;
+    background-color: #ECA400;
   }
 
   span {
@@ -135,7 +145,7 @@ const RadioLabel = styled.label`
     width: 20px;
     height: 20px;
     background-color: #fff;
-    border: 2px solid #f55951;
+    border: 2px solid #ECA400;
     border-radius: 50%;
     margin-right: 10px;
     float: left;

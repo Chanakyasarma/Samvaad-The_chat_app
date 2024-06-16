@@ -7,6 +7,7 @@ import { LuPlus } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
+
 import {
   ChatButton,
   Container,
@@ -77,21 +78,33 @@ export function Sidebar() {
       img.src = IMAGE_PROXY(currentUser.photoURL);
     }
   }, [currentUser]);
+  const randomRange = (min: number, max: number) => {
+    return Math.random() * (max - min) + min;
+  };
+
+  // Function to select a random item from a list
+  const sample = <T,>(list: T[]): T => {
+    return list[Math.floor(Math.random() * list.length)];
+  };
 
   return (
     <StyledSideBar theme={theme}>
+      
       <StyledNavbar theme={theme}>
+      
         <Link
           to="/"
           style={{
             textDecoration: "none",
             fontSize: "calc(24 / 16 * 1rem)",
             fontWeight: 500,
-            color: theme === "light" ? "#f55951" : "#f55951",
+            color: theme === "light" ? "#ECA400" : "#ECA400",
           }}
         >
           Samvaad
         </Link>
+        
+
 
         <Wrapper theme={theme}>
           <PrimaryContainer theme={theme}>
@@ -138,6 +151,7 @@ export function Sidebar() {
           </SecondaryContainer>
         </Wrapper>
       </StyledNavbar>
+      
 
       {isProfileOpen && theme && (
         <Profile
@@ -183,6 +197,7 @@ export function Sidebar() {
           ))}
         </SelectConversationContainer>
       )}
+      
     </StyledSideBar>
   );
 }

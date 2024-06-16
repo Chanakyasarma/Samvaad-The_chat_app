@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { StyledProps, color } from "../../../../library";
 
-const darkGrey = "#361d32";
+const darkGrey = "#001D4A";
 
 export const LeftMessageContainer = styled.div`
   gap: 8px;

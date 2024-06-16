@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledProps, color } from "../../library";
+// Define variables
 
 export const StyledSideBar = styled.div<StyledProps>`
   width: 100%;
@@ -8,9 +9,8 @@ export const StyledSideBar = styled.div<StyledProps>`
   overflow-y: auto;
   border-right: none;
   position: relative;
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.background : color.darkMode.background};
-
+  background: #001D4A;
+  
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -26,11 +26,11 @@ export const StyledSideBar = styled.div<StyledProps>`
       theme === "light" ? color.lightMode.border : color.darkMode.background};
     border-radius: 0 0 20px 0;
   }
+  
   @media screen and (min-width: 869px) {
     width: 350px;
-    border-right: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.border : color.darkMode.border};
+    border-right: 1px solid ${({ theme }) =>
+      theme === "light" ? color.lightMode.border : color.darkMode.border};
   }
 `;
 
@@ -45,18 +45,16 @@ export const StyledNavbar = styled.div<StyledProps>`
   justify-content: space-between;
   background-color: ${({ theme }) =>
     theme === "light" ? color.lightMode.background : color.darkMode.background};
-  border-bottom: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkMode.border};
-
-  border-right: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkMode.border};
+  border-bottom: 1px solid ${({ theme }) =>
+    theme === "light" ? color.lightMode.border : color.darkMode.border};
+  border-right: 1px solid ${({ theme }) =>
+    theme === "light" ? color.lightMode.border : color.darkMode.border};
 
   @media screen and (min-width: 869px) {
     width: 350px;
   }
 `;
+
 
 export const Wrapper = styled.div<StyledProps>`
   display: flex;
@@ -79,9 +77,8 @@ export const ProfileMenu = styled.div<StyledProps>`
   width: 150px;
   background-color: ${({ theme }) =>
     theme === "light" ? color.white : color.darkMode.border};
-  border: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.lightGreyDark};
+  border: 1px solid ${({ theme }) =>
+    theme === "light" ? color.lightMode.border : color.lightGreyDark};
   border-radius: 3px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 `;
@@ -112,12 +109,10 @@ export const ThemeButton = styled.button<StyledProps>`
   background-color: transparent;
   color: ${({ theme }) =>
     theme === "light" ? color.lightMode.navText : color.darkMode.navText};
-  border-top: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.lightGreyDark};
-  border-bottom: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.lightGreyDark};
+  border-top: 1px solid ${({ theme }) =>
+    theme === "light" ? color.lightMode.border : color.lightGreyDark};
+  border-bottom: 1px solid ${({ theme }) =>
+    theme === "light" ? color.lightMode.border : color.lightGreyDark};
   &:hover {
     color: ${({ theme }) =>
       theme === "light"
@@ -142,6 +137,7 @@ export const SignOutButton = styled.button<StyledProps>`
         : color.darkMode.navHoverText};
   }
 `;
+
 export const ChatButton = styled.button<StyledProps>`
   width: 50px;
   height: 50px;
@@ -167,9 +163,9 @@ export const ChatButton = styled.button<StyledProps>`
 
 export const ProfilePicture = styled.img`
   width: 50px;
-  height: 50px; /* Ensure it is a square */
-  border-radius: 10%; /* Adjust the rounding if needed */
-  object-fit: cover; /* Ensure the image covers the square */
+  height: 50px;
+  border-radius: 10%;
+  object-fit: cover;
 `;
 
 export const SecondaryContainer = styled.div<StyledProps>`
@@ -193,6 +189,7 @@ export const Text = styled.p<StyledProps>`
   color: ${({ theme }) =>
     theme === "light" ? color.lightMode.text : color.darkMode.text};
 `;
+
 export const SelectConversationButton = styled.button<StyledProps>`
   width: 150px;
   border: none;

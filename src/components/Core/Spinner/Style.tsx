@@ -10,7 +10,7 @@ export const StyledSpinner = styled.div`
 
   svg {
     z-index: 5;
-    color: #f55951;
+    color: #ECA400;
     font-size: 2rem;
     position: relative;
     animation: spin 0.6s linear infinite;

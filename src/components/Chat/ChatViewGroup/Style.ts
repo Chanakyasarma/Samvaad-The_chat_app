@@ -8,7 +8,7 @@ export const AddMemberButton = styled.div<StyledProps>`
   font-size: 0.9rem;
   border: none;
   transition: all 0.2s ease;
-  background-color: #543c52;
+  background-color: #006992;
   color: white;
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@ export const KickGroupButton = styled.button<StyledProps>`
 `;
 
 export const MakeAdminButton = styled.button<StyledProps>`
-  background-color: #543c52;
+  background-color: #006992;
   color: white;
   &:hover {
     background-color: #5aa126;

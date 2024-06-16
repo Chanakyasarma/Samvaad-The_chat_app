@@ -44,7 +44,7 @@ export const RightMessageContainer = styled.div`
   }
 `;
 export const RightMessageTextLink = styled.div<StyledProps>`
-  color: #361d32;
+  color: #001D4A;
   padding: 10px;
   font-size: 1rem;
   max-width: 600px;

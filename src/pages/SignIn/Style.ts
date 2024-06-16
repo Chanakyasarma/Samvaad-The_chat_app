@@ -61,7 +61,7 @@ export const TextWrapper = styled.div`
   flex-direction: column;
 
   h1 {
-    color: #f55951;
+    color: #001D4A;
     font-size: 2.2rem;
     font-weight: 500;
 
