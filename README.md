@@ -1,4 +1,4 @@
-# 📱 Samvaad - Chat App
+# 💬 Samvaad - Chat App
 
 Samvaad is a realtime chat app built with Vite, React, TypeScript, Firebase, and other technologies. This chat app is purposefully made for the web, like a web chat app, but it also works on mobile devices.
 
