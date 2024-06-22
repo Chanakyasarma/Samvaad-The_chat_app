@@ -314,19 +314,19 @@ export default function SignIn() {
         <h1>Samvaad</h1>
       </TextWrapper>
       <InfoButton onClick={handleDemoInfoClick}>
-                <FaInfoCircle style={{ marginRight: "5px" }} />
-                Demo Info
-              </InfoButton>
-              {showDemoPopup && (
-                <PopupWrapper onClick={closeDemoPopup}>
-                  <PopupContent onClick={(e) => e.stopPropagation()}>
-                    <PopupCloseButton onClick={closeDemoPopup}>×</PopupCloseButton>
-                    <h2>Demo Credentials</h2>
-                    <p><strong>Username:</strong> demo@example.com</p>
-                    <p><strong>Password:</strong> demopassword</p>
-                  </PopupContent>
-                </PopupWrapper>
-              )}
+        <FaInfoCircle style={{ marginRight: "5px" }} />
+        Demo Info
+      </InfoButton>
+      {showDemoPopup && (
+        <PopupWrapper onClick={closeDemoPopup}>
+          <PopupContent onClick={(e) => e.stopPropagation()}>
+            <PopupCloseButton onClick={closeDemoPopup}>×</PopupCloseButton>
+            <h2>Demo Credentials</h2>
+            <p><strong>Username:</strong> demo@example.com</p>
+            <p><strong>Password:</strong> demopassword</p>
+          </PopupContent>
+        </PopupWrapper>
+      )}
       <Wrapper>
         <FormMainWrapper>
           <FormWrapper>
@@ -338,8 +338,8 @@ export default function SignIn() {
                   checked={!isSignUp}
                   onChange={() => {
                     resetForm();
-                    setIsSignUp
-                                      }}
+                    setIsSignUp(false); // Corrected here
+                  }}
                 />
                 Login
               </RadioLabel>
@@ -408,7 +408,7 @@ export default function SignIn() {
                       required
                     />
                     <TogglePasswordButton type="button" onClick={toggleShowPassword}>
-                      {showPassword ?  <FaEye />: <FaEyeSlash />}
+                      {showPassword ? <FaEye /> : <FaEyeSlash />}
                     </TogglePasswordButton>
                   </PasswordInputWrapper>
                   <FormGroup>
@@ -435,4 +435,3 @@ export default function SignIn() {
     </Container>
   );
 }
-
