@@ -376,7 +376,7 @@ export default function SignIn() {
                       required
                     />
                     <TogglePasswordButton type="button" onClick={toggleShowPassword}>
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      {showPassword ? <FaEye /> : <FaEyeSlash />}
                     </TogglePasswordButton>
                   </PasswordInputWrapper>
                   <Button disabled={loading} onClick={handleEmailSignIn}>
@@ -408,7 +408,7 @@ export default function SignIn() {
                       required
                     />
                     <TogglePasswordButton type="button" onClick={toggleShowPassword}>
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      {showPassword ?  <FaEye />: <FaEyeSlash />}
                     </TogglePasswordButton>
                   </PasswordInputWrapper>
                   <FormGroup>
