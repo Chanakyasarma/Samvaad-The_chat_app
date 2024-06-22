@@ -6,6 +6,7 @@ Samvaad is a realtime chat app built with Vite, React, TypeScript, Firebase, and
 
 - 🗝 Login / SignUp(Authentication)
 - 📸 Upload profile pic
+- 🌐 Translate Chat to specific language(Include 10+ indian language)
 - 👤 View your own profile, email, name, id, etc.
 - 🗨 Create conversations (1-on-1 or group)
 - 📬 Users can send:
@@ -27,11 +28,16 @@ Samvaad is a realtime chat app built with Vite, React, TypeScript, Firebase, and
 - 👑 Make someone an admin, kick someone out of the group, and add participants in the current active group again
 
 ## 🛠️ Main Technologies
-- `React`
-- `Firebase`
-- `TypeScript`
-- `Styled Components`
-- `Vite`
+<div align="left">
+  <div style="display: flex; align-items: flex-start;">
+    <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" alt="React" width="65" height="65" />
+    <img src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain-wordmark.svg" alt="Firebase" width="65" height="65" />
+    <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg" alt="CSS3" width="65" height="65" />
+    <img src="https://github.com/devicons/devicon/blob/master/icons/vite/vite-original.svg" alt="Vite" width="65" height="65" />
+    <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="65" height="65" />
+  </div>
+</div>
+
 
 
 
