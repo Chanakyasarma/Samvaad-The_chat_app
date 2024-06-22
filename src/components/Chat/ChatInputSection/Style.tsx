@@ -91,7 +91,7 @@ export const Input = styled.input<StyledProps>`
         : color.darkMode.chatBackground};
 
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text2 : color.darkMode.title};
 
   ::placeholder {
     color: ${({ theme }) =>

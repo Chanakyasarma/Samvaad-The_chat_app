@@ -9,7 +9,7 @@ import { useUserStore } from "../../hooks";
 import toast from "react-hot-toast";
 import { TextWrapper, Wrapper } from "./Style";
 import LoadingSpinner from "./Spinner";
-import { FaEye, FaEyeSlash, FaCheck  } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaCheck, FaInfoCircle } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
@@ -174,6 +174,55 @@ const RadioLabel = styled.label`
   }
 `;
 
+const InfoButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ECA400;
+  font-size: 1rem;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const PopupWrapper = styled.div`
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:20;
+  
+`;
+
+const PopupContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: default; /* Ensure cursor doesn't change on text */
+  onClick={(e) => e.stopPropagation()};
+`;
+
+const PopupCloseButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #666;
+`;
+
 export default function SignIn() {
   const { currentUser } = useUserStore();
   const [loading, setLoading] = useState(false);
@@ -183,6 +232,7 @@ export default function SignIn() {
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showDemoPopup, setShowDemoPopup] = useState(false);
 
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -247,6 +297,14 @@ export default function SignIn() {
     }
   };
 
+  const handleDemoInfoClick = () => {
+    setShowDemoPopup(true);
+  };
+
+  const closeDemoPopup = () => {
+    setShowDemoPopup(false);
+  };
+
   if (currentUser) return <Navigate to="/" />;
 
   return (
@@ -255,6 +313,20 @@ export default function SignIn() {
       <TextWrapper>
         <h1>Samvaad</h1>
       </TextWrapper>
+      <InfoButton onClick={handleDemoInfoClick}>
+                <FaInfoCircle style={{ marginRight: "5px" }} />
+                Demo Info
+              </InfoButton>
+              {showDemoPopup && (
+                <PopupWrapper onClick={closeDemoPopup}>
+                  <PopupContent onClick={(e) => e.stopPropagation()}>
+                    <PopupCloseButton onClick={closeDemoPopup}>×</PopupCloseButton>
+                    <h2>Demo Credentials</h2>
+                    <p><strong>Username:</strong> demo@example.com</p>
+                    <p><strong>Password:</strong> demopassword</p>
+                  </PopupContent>
+                </PopupWrapper>
+              )}
       <Wrapper>
         <FormMainWrapper>
           <FormWrapper>
@@ -266,8 +338,8 @@ export default function SignIn() {
                   checked={!isSignUp}
                   onChange={() => {
                     resetForm();
-                    setIsSignUp(false);
-                  }}
+                    setIsSignUp
+                                      }}
                 />
                 Login
               </RadioLabel>
@@ -307,7 +379,9 @@ export default function SignIn() {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </TogglePasswordButton>
                   </PasswordInputWrapper>
-                  <Button disabled={loading} onClick={handleEmailSignIn} style={{ marginTop: "30px" }}>Login</Button>
+                  <Button disabled={loading} onClick={handleEmailSignIn}>
+                    Login
+                  </Button>
                 </div>
               ) : (
                 <div>
@@ -348,9 +422,12 @@ export default function SignIn() {
                       {profilePicture && <FileInputIndicator className="indicator"><FaCheck /></FileInputIndicator>}
                     </FileInputLabel>
                   </FormGroup>
-                  <Button disabled={loading} onClick={handleEmailSignUp}>Sign Up</Button>
+                  <Button disabled={loading} onClick={handleEmailSignUp}>
+                    Sign Up
+                  </Button>
                 </div>
               )}
+              
             </FormGroup>
           </FormWrapper>
         </FormMainWrapper>
@@ -358,3 +435,4 @@ export default function SignIn() {
     </Container>
   );
 }
+

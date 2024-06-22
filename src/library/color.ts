@@ -12,6 +12,7 @@ export const color = {
     background: "#001D4A",
     border: "#0096c7",
     text: "#ECA400",
+    text2: "#0D1827",
     title: "#ECA400",
   },
 

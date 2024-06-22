@@ -34,7 +34,7 @@ export const RightReplyMessage = styled.div<StyledProps>`
 export const RightMessageContainer = styled.div`
   gap: 8px;
   display: flex;
-  margin: 35px 0;
+  margin: 33px 0px 20px 0;
   position: relative;
   align-items: center;
   justify-content: end;

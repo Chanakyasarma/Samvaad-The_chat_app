@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { BsReply } from "react-icons/bs";
 import { FiSmile } from "react-icons/fi";
+import { RiTranslate2 } from "react-icons/ri";
 import { IoMdDownload } from "react-icons/io";
 import { useTheme, useUserStore } from "../../../../hooks";
-
 import {
   ConversationInfoType,
   MessageItemType,
   ReplyInfoType,
   formatDate,
   formatFileSize,
-  splitLinkFromMessage,
+  splitLinkFromMessage
 } from "../../../../library";
 import { FileIcon } from "../../../Media/FileIcon";
 import { motion } from "framer-motion";
@@ -19,9 +18,8 @@ import {
   AvatarFromId,
   ChatReactionPopUp,
   ChatReactionStatus,
-  ChatReplyBadge,
+  ChatReplyBadge
 } from "../..";
-
 import {
   LeftMessageActions,
   LeftMessageContainer,
@@ -30,8 +28,12 @@ import {
   LeftMessageRemoved,
   LeftMessageTextLink,
   LeftReplyMessage,
-  MessageAvatar,
+  MessageAvatar
 } from "./Style";
+import { translateText } from "../../../Translate/translateService"; // Update this path based on your project structure
+import { languages } from "../../../Translate/language"; // Update this path based on your project structure
+import {  doc, setDoc, getDoc } from "firebase/firestore";
+import { firebaseFirestore } from "../../../../firebase/firebaseConfig";
 
 type LeftMessageProps = {
   message: MessageItemType;
@@ -50,11 +52,46 @@ export function LeftMessage({
   setReplyInfo,
 }: LeftMessageProps) {
   const [isSelectReactionOpen, setIsSelectReactionOpen] = useState(false);
+  const [translatedText, setTranslatedText] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("en"); // Default to English
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // State to manage dropdown visibility
   const { currentUser } = useUserStore();
   const { theme } = useTheme();
   const formattedDate = formatDate(
     message.createdAt.seconds ? message.createdAt.seconds * 1000 : Date.now()
   );
+
+  useEffect(() => {
+    // Load translated text from Firestore if available
+    const loadTranslatedText = async () => {
+      try {
+        const docRef = doc(firebaseFirestore, "translatedMessages", message.id as string);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setTranslatedText(docSnap.data()?.translatedText);
+        }
+      } catch (error) {
+        console.error("Error loading translated text:", error);
+      }
+    };
+
+    loadTranslatedText();
+  }, [message.id]);
+
+  async function handleTranslateMessage(content: string, targetLang: string) {
+    try {
+      const translatedContent = await translateText(content, 'auto', targetLang);
+      setTranslatedText(translatedContent);
+
+      // Save translated text to Firestore
+      const docRef = doc(firebaseFirestore, "translatedMessages", message.id as string);
+      await setDoc(docRef, { translatedText: translatedContent });
+
+    } catch (error) {
+      console.error("Error translating message:", error);
+      setTranslatedText("Translation error");
+    }
+  }
 
   return (
     <motion.div
@@ -95,58 +132,66 @@ export function LeftMessage({
             )}
           </MessageAvatar>
         )}
-        {message.type === "text" ? (
-          <LeftMessageTextLink
-            onClick={(event) => event.stopPropagation()}
-            title={formattedDate}
-            theme={theme}
-          >
-            {splitLinkFromMessage(message.content).map((item, index) => (
-              <Fragment key={index}>
-                {typeof item === "string" ? (
-                  <p>{item}</p>
-                ) : (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.link}
-                  </a>
-                )}
-              </Fragment>
-            ))}
+        {translatedText ? (
+          <LeftMessageTextLink onClick={(event) => event.stopPropagation()} title={formattedDate} theme={theme}>
+            {translatedText}
           </LeftMessageTextLink>
-        ) : message.type === "image" ? (
-          <LeftMessageImage>
-            <img
-              className="image"
-              onClick={(event) => {
-                event.stopPropagation();
-              }}
-              title={formattedDate}
-              src={message.content}
-              alt="image"
-            />
-          </LeftMessageImage>
-        ) : message.type === "file" ? (
-          <LeftMessageFile
-            href={message.content}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            theme={theme}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <FileIcon
-              extension={message.file?.name.split(".").slice(-1)[0] as string}
-            />
-            <div>
-              <p>{message.file?.name}</p>
-              <p>{formatFileSize(message.file?.size as number)}</p>{" "}
-            </div>
-            <IoMdDownload />
-          </LeftMessageFile>
         ) : (
-          <LeftMessageRemoved title={formattedDate}>
-            Message has been removed
-          </LeftMessageRemoved>
+          <>
+            {message.type === "text" ? (
+              <LeftMessageTextLink
+                onClick={(event) => event.stopPropagation()}
+                title={formattedDate}
+                theme={theme}
+              >
+                {splitLinkFromMessage(message.content).map((item, index) => (
+                  <Fragment key={index}>
+                    {typeof item === "string" ? (
+                      <p>{item}</p>
+                    ) : (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer">
+                        {item.link}
+                      </a>
+                    )}
+                  </Fragment>
+                ))}
+              </LeftMessageTextLink>
+            ) : message.type === "image" ? (
+              <LeftMessageImage>
+                <img
+                  className="image"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                  }}
+                  title={formattedDate}
+                  src={message.content}
+                  alt="image"
+                />
+              </LeftMessageImage>
+            ) : message.type === "file" ? (
+              <LeftMessageFile
+                href={message.content}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                theme={theme}
+                onClick={(event) => event.stopPropagation()}
+              >
+                <FileIcon
+                  extension={message.file?.name.split(".").slice(-1)[0] as string}
+                />
+                <div>
+                  <p>{message.file?.name}</p>
+                  <p>{formatFileSize(message.file?.size as number)}</p>{" "}
+                </div>
+                <IoMdDownload />
+              </LeftMessageFile>
+            ) : (
+              <LeftMessageRemoved title={formattedDate}>
+                Message has been removed
+              </LeftMessageRemoved>
+            )}
+          </>
         )}
         {message.type !== "removed" && (
           <LeftMessageActions theme={theme}>
@@ -166,6 +211,29 @@ export function LeftMessage({
             >
               <BsReply />
             </button>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                setIsLanguageDropdownOpen(!isLanguageDropdownOpen); // Toggle dropdown visibility
+              }}
+            >
+              <RiTranslate2 />
+            </button>
+            {isLanguageDropdownOpen && (
+              <select
+                onChange={(event) => {
+                  setSelectedLanguage(event.target.value);
+                  handleTranslateMessage(message.content, event.target.value);
+                }}
+                value={selectedLanguage}
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </LeftMessageActions>
         )}
         {isSelectReactionOpen && theme && (

@@ -3,7 +3,7 @@ import type { User } from "firebase/auth";
 import create from "zustand";
 
 type StoreType = {
-  currentUser: undefined | null | User;
+  currentUser: undefined | null | User| undefined;
   setCurrentUser: (user: User | null) => void;
 };
 
