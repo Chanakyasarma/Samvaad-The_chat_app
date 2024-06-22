@@ -10,7 +10,7 @@ export const color = {
     navHoverText: "#343837",
     chatBackground: "#D1EEFA",
     background: "#001D4A",
-    border: "a2d2ff",
+    border: "#0096c7",
     text: "#ECA400",
     title: "#ECA400",
   },

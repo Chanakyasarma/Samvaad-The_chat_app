@@ -65,9 +65,7 @@ export const TextWrapper = styled.div`
     font-size: 2.2rem;
     font-weight: 500;
 
-    @media screen and (max-width: 580px) {
-      display:none
-    }
+   
   }
 
   

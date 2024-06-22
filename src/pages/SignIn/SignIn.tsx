@@ -9,6 +9,7 @@ import { useUserStore } from "../../hooks";
 import toast from "react-hot-toast";
 import { TextWrapper, Wrapper } from "./Style";
 import LoadingSpinner from "./Spinner";
+import { FaEye, FaEyeSlash, FaCheck  } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
@@ -44,11 +45,11 @@ const FormWrapper = styled.form`
     padding: 15px;
     width: 300px;
   }
-
 `;
 
 const FormGroup = styled.div`
   margin-bottom: 20px;
+  position: relative;
 `;
 
 const Label = styled.label`
@@ -73,6 +74,26 @@ const Input = styled.input`
   }
 `;
 
+const PasswordInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const PasswordInput = styled(Input)`
+  padding-right: 40px; /* Add padding to accommodate the eye icon */
+`;
+
+const TogglePasswordButton = styled.button`
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ECA400;
+  font-size: 1.2rem;
+`;
+
 const FileInputLabel = styled.label`
   display: block;
   padding: 10px;
@@ -95,6 +116,7 @@ const FileInputIndicator = styled.span`
   margin-left: 10px;
   font-size: 0.9rem;
 `;
+
 const FileInput = styled.input`
   display: none;
 `;
@@ -109,7 +131,7 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 10px; /* Add margin here */
+  margin-bottom: 10px;
 
   &:hover {
     background-color: #006992;
@@ -160,6 +182,18 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setProfilePicture(null);
+  };
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -213,7 +247,6 @@ export default function SignIn() {
     }
   };
 
-  
   if (currentUser) return <Navigate to="/" />;
 
   return (
@@ -227,12 +260,28 @@ export default function SignIn() {
           <FormWrapper>
             <RadioWrapper>
               <RadioLabel>
-                <input type="radio" name="authType" checked={!isSignUp} onChange={() => setIsSignUp(false)} />
+                <input
+                  type="radio"
+                  name="authType"
+                  checked={!isSignUp}
+                  onChange={() => {
+                    resetForm();
+                    setIsSignUp(false);
+                  }}
+                />
                 Login
               </RadioLabel>
 
               <RadioLabel>
-                <input type="radio" name="authType" checked={isSignUp} onChange={() => setIsSignUp(true)} />
+                <input
+                  type="radio"
+                  name="authType"
+                  checked={isSignUp}
+                  onChange={() => {
+                    resetForm();
+                    setIsSignUp(true);
+                  }}
+                />
                 Sign Up
               </RadioLabel>
             </RadioWrapper>
@@ -247,20 +296,25 @@ export default function SignIn() {
                     required
                   />
                   <Label>Password</Label>
-                  <Input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                  <PasswordInputWrapper>
+                    <PasswordInput
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <TogglePasswordButton type="button" onClick={toggleShowPassword}>
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </TogglePasswordButton>
+                  </PasswordInputWrapper>
                   <Button disabled={loading} onClick={handleEmailSignIn} style={{ marginTop: "30px" }}>Login</Button>
-                  
                 </div>
               ) : (
                 <div>
                   <Label>Name</Label>
                   <Input
                     type="text"
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                   />
@@ -272,12 +326,17 @@ export default function SignIn() {
                     required
                   />
                   <Label>Password</Label>
-                  <Input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                  <PasswordInputWrapper>
+                    <PasswordInput
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <TogglePasswordButton type="button" onClick={toggleShowPassword}>
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </TogglePasswordButton>
+                  </PasswordInputWrapper>
                   <FormGroup>
                     <FileInputLabel>
                       Choose Profile Picture
@@ -286,7 +345,7 @@ export default function SignIn() {
                         accept="image/*"
                         onChange={(e) => setProfilePicture(e.target.files?.[0] || null)}
                       />
-                      {profilePicture && <FileInputIndicator className="indicator">(Image Selected)</FileInputIndicator>}
+                      {profilePicture && <FileInputIndicator className="indicator"><FaCheck /></FileInputIndicator>}
                     </FileInputLabel>
                   </FormGroup>
                   <Button disabled={loading} onClick={handleEmailSignUp}>Sign Up</Button>
