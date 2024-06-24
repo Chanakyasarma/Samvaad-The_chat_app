@@ -1,10 +1,12 @@
-export const IMAGE_PROXY = (url: string) =>
-  `${url}`;
+export const IMAGE_PROXY = (url: string) =>{
+  return url ? `${url}`:``;
+}
+  
 
 export const FILE_ICON = (extension: string) =>
   `https://cdn.jsdelivr.net/gh/napthedev/file-icons/file/${extension}.svg`;
 
-export const DEFAULT_AVATAR = "/empty-avatar.png";
+export const DEFAULT_AVATAR = "/user.png";
 
 export const REACTIONS_UI: {
   [key: string]: {

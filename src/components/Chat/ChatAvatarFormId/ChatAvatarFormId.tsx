@@ -19,7 +19,7 @@ export function AvatarFromId({ uid, size = 20 }: AvatarFromIdProps) {
     <Image
       title={data?.[0].data()?.displayName}
       style={{ width: size, height: size }}
-      src={IMAGE_PROXY(data?.[0].data()?.photoURL)}
+      src={IMAGE_PROXY(data?.[0].data()?.photoURL)|| '/user.png'}
     />
   );
 }

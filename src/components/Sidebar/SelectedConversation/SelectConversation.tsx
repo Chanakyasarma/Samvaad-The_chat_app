@@ -60,7 +60,7 @@ export function SelectConversation({
           theme={theme}
           className={conversationId === id ? "active" : "not-active"}
         >
-          <Image src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)} alt="" />
+          <Image src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)|| '/user.png'} alt="" />
           <div>
             <Name theme={theme}>{filtered?.[0].data()?.displayName}</Name>
             {lastMessageLoading ? (
@@ -100,11 +100,11 @@ export function SelectConversation({
                 className={
                   conversationId === id ? "not-active-border" : "active-border"
                 }
-                src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+                src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)|| '/user.png'}
                 alt=""
               />
               <ImageSecondary
-                src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)}
+                src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)|| '/user.png'}
                 alt=""
               />
             </Relative>

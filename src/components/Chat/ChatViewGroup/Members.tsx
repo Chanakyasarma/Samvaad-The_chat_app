@@ -81,7 +81,7 @@ export const Members = ({ conversation, theme }: MembersProps) => {
           .map((user) => (
             <MemberWrapper key={user.uid}>
               <MemberItem theme={theme}>
-                <UserProfilePicture src={IMAGE_PROXY(user.photoURL)} alt="" />
+                <UserProfilePicture src={IMAGE_PROXY(user.photoURL)|| '/user.png'} alt="" />
                 <p>{user.displayName}</p>
               </MemberItem>
 

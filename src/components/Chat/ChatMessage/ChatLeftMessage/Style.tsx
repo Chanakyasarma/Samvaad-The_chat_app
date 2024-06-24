@@ -6,7 +6,7 @@ const darkGrey = "#001D4A";
 export const LeftMessageContainer = styled.div`
   gap: 8px;
   display: flex;
-  margin: 33px 0px 20px;
+  margin: 33px 0px;
   align-items: center;
   justify-content: start;
   flex-direction: row;

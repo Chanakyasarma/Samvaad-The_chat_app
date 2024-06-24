@@ -34,7 +34,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 1px 0;
+  padding: 1px 0px 10px;
 `;
 
 export const Button = styled.button<StyledProps>`

@@ -56,7 +56,7 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
             <>
               {conversation.users.length === 2 ? (
                 <SingleImage
-                  src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+                  src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)|| '/user.png'}
                   alt=""
                 />
               ) : (
@@ -67,11 +67,11 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
                     <Relative>
                       <ImagePrimary
                         theme={theme}
-                        src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+                        src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)||'/user.png'}
                         alt=""
                       />
                       <ImageSecondary
-                        src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)}
+                        src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)|| '/empty-avatar.png'}
                         alt=""
                       />
                     </Relative>

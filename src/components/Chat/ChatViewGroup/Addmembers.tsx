@@ -62,7 +62,7 @@ export function AddMembers({ conversations, theme }: AddMembersProps) {
             <MemberItem theme={theme}>
               <UserProfilePicture
                 className="h-10 w-10 flex-shrink-0 rounded-full object-cover"
-                src={IMAGE_PROXY(user.photoURL)}
+                src={IMAGE_PROXY(user.photoURL) || '/user.png'}
                 alt=""
               />
               <p>{user.displayName}</p>

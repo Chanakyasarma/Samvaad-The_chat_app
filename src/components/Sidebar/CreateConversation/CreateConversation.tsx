@@ -128,7 +128,7 @@ export function CreateConversation({
                     readOnly
                   />
                   <UserProfilePicture
-                    src={IMAGE_PROXY(doc.data().photoURL)}
+                    src={IMAGE_PROXY(doc.data().photoURL) || '/user.png'}
                     alt=""
                   />
                   <UserName>{doc.data().displayName}</UserName>
