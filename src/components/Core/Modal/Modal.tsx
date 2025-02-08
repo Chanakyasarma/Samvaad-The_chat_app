@@ -2,7 +2,7 @@ import { Dialog } from "@mui/material";
 import { CloseButton, ModalHeader } from "./Style";
 import { FiX } from "react-icons/fi";
 import { color } from "../../../library";
-import { MdBorderColor } from "react-icons/md";
+
 
 type CoreModalProps = {
   theme: string;
