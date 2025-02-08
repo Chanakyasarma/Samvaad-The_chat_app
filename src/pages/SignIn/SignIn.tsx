@@ -32,7 +32,7 @@ const FormWrapper = styled.form`
   flex: 1;
   width: 500px;
   padding: 20px 30px;
-  background-color: #001D4A;
+  background-color: #000a1d;
   max-height: 500px;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@ const Label = styled.label`
   display: block;
   font-size: 1rem;
   margin-bottom: 5px;
-  color: #ECA400;
+  color: #868686;
 `;
 
 const Input = styled.input`
@@ -90,7 +90,7 @@ const TogglePasswordButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: #ECA400;
+  color: #868686;
   font-size: 1.2rem;
 `;
 
@@ -98,7 +98,7 @@ const FileInputLabel = styled.label`
   display: block;
   padding: 10px;
   font-size: 1rem;
-  background-color: #ECA400;
+  background-color: #868686;
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -125,8 +125,8 @@ const Button = styled.button`
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  background-color: #ECA400;
-  color: white;
+  background-color: #D1EEFA;
+  color: #000a1d;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -135,6 +135,7 @@ const Button = styled.button`
 
   &:hover {
     background-color: #006992;
+    color: white
   }
 `;
 
@@ -150,16 +151,16 @@ const RadioLabel = styled.label`
   cursor: pointer;
   margin: 1px;
   padding: 10px;
-  border: 2px solid #ECA400;
+  border: 2px solid #868686;
   border-radius: 10px;
-  color: #ECA400;
+  color: #868686;
 
   input {
     display: none;
   }
 
   input:checked + span {
-    background-color: #ECA400;
+    background-color: #868686;
   }
 
   span {
@@ -167,7 +168,7 @@ const RadioLabel = styled.label`
     width: 20px;
     height: 20px;
     background-color: #fff;
-    border: 2px solid #ECA400;
+    border: 2px solid #868686;
     border-radius: 50%;
     margin-right: 10px;
     float: left;
@@ -178,7 +179,7 @@ const InfoButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: #ECA400;
+  color: #000a1d;
   font-size: 1rem;
   margin-top: 10px;
   display: flex;

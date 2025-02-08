@@ -42,6 +42,16 @@ export const UserProfilePicture = styled.img`
 
 export const UserName = styled.p<StyledProps>`
   margin: 0;
+  color: ${({ theme }) =>
+    theme === "light"
+        ? color.lightMode.text
+        : color.darkMode.text};
+  &:hover {
+    color: ${({ theme }) =>
+      theme === "light"
+        ? color.lightMode.title
+        : color.darkMode.title};
+  }
 `;
 
 export const ActionButton = styled.button<StyledProps>`

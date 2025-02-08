@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { StyledProps, color } from "../../../../library";
 
-const darkGrey = "#001D4A";
+const darkGrey = "#868686";
 
 export const LeftMessageContainer = styled.div`
   gap: 8px;
+  
   display: flex;
   margin: 33px 0px;
   align-items: center;
@@ -54,8 +55,8 @@ export const LeftReplyMessage = styled.div<StyledProps>`
       ${({ theme }) =>
         theme === "light" ? color.lightMode.border : color.darkMode.background};
     background-color: ${({ theme }) =>
-      theme === "light" ? "#eaeaea" : "#525252"};
-    border-bottom-left-radius: 0;
+      theme === "light" ? color.lightMode.title : color.darkMode.title};
+    border-bottom-right-radius: 0;
   }
 `;
 
@@ -76,7 +77,7 @@ export const LeftMessageTextLink = styled.div<StyledProps>`
     ${({ theme }) =>
       theme === "light" ? color.lightMode.border : color.darkMode.border};
   background-color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.background : darkGrey};
+    theme === "light" ? color.lightMode.text : darkGrey};
   box-shadow: 0 1px 3px #00000020;
   border-bottom-left-radius: 0;
 

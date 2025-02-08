@@ -5,7 +5,7 @@ export const ReactionStatus = styled.div<StyledProps>`
   background-color: ${({ theme }) =>
     theme === "light" ? color.lightMode.background : color.darkMode.background};
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
   border: 1px solid
     ${({ theme }) =>
       theme === "light" ? color.lightMode.border : color.darkMode.border};

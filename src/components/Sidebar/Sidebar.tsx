@@ -91,7 +91,7 @@ export function Sidebar() {
             textDecoration: "none",
             fontSize: "calc(24 / 16 * 1rem)",
             fontWeight: 500,
-            color: theme === "light" ? "#ECA400" : "#ECA400",
+            color: theme === "light" ? "#868686" : "#868686",
           }}
         >
           Samvaad

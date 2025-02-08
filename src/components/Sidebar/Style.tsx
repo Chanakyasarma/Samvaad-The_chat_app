@@ -9,7 +9,7 @@ export const StyledSideBar = styled.div<StyledProps>`
   overflow-y: auto;
   border-right: none;
   position: relative;
-  background: #001D4A;
+  background: #000a1d;
   
   &::-webkit-scrollbar {
     width: 10px;
@@ -23,7 +23,7 @@ export const StyledSideBar = styled.div<StyledProps>`
   }
   &::-webkit-scrollbar-track {
     background: ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkMode.background};
+      theme === "light" ? color.lightMode.background : color.darkMode.background};
     border-radius: 0 0 20px 0;
   }
   

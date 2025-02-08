@@ -19,7 +19,7 @@ import {
   UserButton,
   UserList,
   UserName,
-  UserProfilePicture,
+  UserProfilePicture
 } from "./Style";
 import { Modal, Spinner } from "../../Core";
 

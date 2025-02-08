@@ -23,12 +23,12 @@ export const Name = styled.p<StyledProps>`
   font-weight: 500;
   padding-bottom: 5px;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
 `;
 
 export const LastMessage = styled.p<StyledProps>`
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.navText : color.darkMode.navText};
+    theme === "light" ? color.lightMode.navText : color.darkMode.text};
   font-size: calc(14 / 16 * 1rem);
 `;
 

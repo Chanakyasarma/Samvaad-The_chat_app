@@ -2,6 +2,7 @@ import { Dialog } from "@mui/material";
 import { CloseButton, ModalHeader } from "./Style";
 import { FiX } from "react-icons/fi";
 import { color } from "../../../library";
+import { MdBorderColor } from "react-icons/md";
 
 type CoreModalProps = {
   theme: string;
@@ -33,17 +34,17 @@ export const Modal = ({
             theme === "light"
               ? color.lightMode.background
               : color.darkMode.background,
-
           padding: "30px 10px 10px",
           minWidth: "320px",
           maxWidth: "500px",
           maxHeight: "500px",
           margin: "0 5px",
           borderRadius: "10px",
+          
         },
       }}
     >
-      <ModalHeader theme={theme}>{title}</ModalHeader>
+      <ModalHeader theme={theme} style={{ color: theme === "light" ? color.lightMode.text : color.darkMode.text }}>{title}</ModalHeader>
       {children}
       <CloseButton theme={theme} onClick={onClose}>
         <FiX />

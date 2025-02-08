@@ -21,12 +21,12 @@ export const RightReplyMessage = styled.div<StyledProps>`
     position: relative;
     border-radius: 10px;
     color: ${({ theme }) =>
-      theme === "light" ? color.lightMode.text : color.darkMode.text};
+      theme === "light" ? color.lightMode.title : color.darkMode.title};
     border: 1px solid
       ${({ theme }) =>
         theme === "light" ? color.lightMode.border : color.darkMode.background};
     background-color: ${({ theme }) =>
-      theme === "light" ? "#eaeaea" : "#525252"};
+      theme === "light" ? color.lightMode.text : color.darkMode.text};
     border-bottom-right-radius: 0;
   }
 `;
@@ -44,7 +44,7 @@ export const RightMessageContainer = styled.div`
   }
 `;
 export const RightMessageTextLink = styled.div<StyledProps>`
-  color: #001D4A;
+  color: #868686;
   padding: 10px;
   font-size: 1rem;
   max-width: 600px;

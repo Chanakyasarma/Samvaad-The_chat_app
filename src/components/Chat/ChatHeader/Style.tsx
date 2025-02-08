@@ -18,7 +18,7 @@ export const Name = styled.p<StyledProps>`
   font-weight: 500;
   margin-left: 15px;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
 `;
 
 export const Wrapper = styled.div`

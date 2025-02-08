@@ -91,7 +91,7 @@ export const Input = styled.input<StyledProps>`
         : color.darkMode.chatBackground};
 
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text2 : color.darkMode.title};
+    theme === "light" ? color.lightMode.text2 : color.darkMode.text};
 
   ::placeholder {
     color: ${({ theme }) =>
@@ -106,7 +106,7 @@ export const CloseButton = styled.button<StyledProps>`
   position: absolute;
   background-color: transparent;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
 `;
 
 export const SendButton = styled.button<StyledProps>`
@@ -116,7 +116,7 @@ export const SendButton = styled.button<StyledProps>`
   padding-left: 10px;
   align-items: center;
   background: transparent;
-  color: ${({ theme }) => (theme === "light" ? color.primary : color.primary)};
+  color: ${({ theme }) => (theme === "light" ? color.primary : color.darkMode.text)};
   &:disabled {
     color: ${({ theme }) =>
       theme === "light" ? color.lightMode.text : color.darkMode.text};
@@ -141,7 +141,7 @@ export const DragFile = styled.div`
 export const Title = styled.div<StyledProps>`
   z-index: 30;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
   font-size: calc(30 / 16 * 1rem);
 `;
 
@@ -163,7 +163,7 @@ export const ReplyTitle = styled.div<StyledProps>`
   display: flex;
   font-weight: 500;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.title : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
   align-items: baseline;
   padding-bottom: 10px;
   gap: 5px;

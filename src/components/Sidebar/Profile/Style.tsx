@@ -30,7 +30,7 @@ export const Thick = styled.span`
 export const Text = styled.p<StyledProps>`
   line-height: 2;
   color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.title};
+    theme === "light" ? color.lightMode.text : color.darkMode.text};
   @media screen and (max-width: 565px) {
     font-size: 0.9rem;
   }
