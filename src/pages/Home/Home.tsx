@@ -8,7 +8,8 @@ export default function Home() {
     <Wrapper>
       <Sidebar />
       <HomeWrapper theme={theme}>
-        <Text theme={theme}>Select a conversation to start chatting.</Text>
+        <div style={{ fontSize: "3rem", marginBottom: "16px", opacity: 0.4 }}>💬</div>
+        <Text theme={theme}>Select a conversation to start chatting</Text>
       </HomeWrapper>
     </Wrapper>
   );

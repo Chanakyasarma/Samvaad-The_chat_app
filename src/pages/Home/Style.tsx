@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import { StyledProps, color } from "../../library";
+import { StyledProps } from "../../library";
 
 export const Text = styled.p<StyledProps>`
-  font-size: calc(18 / 16 * 1rem);
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.text};
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme === "light" ? "#94a3b8" : "#475569"};
+  margin-top: 4px;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 `;
 
 export const HomeWrapper = styled.div<StyledProps>`
@@ -18,10 +20,10 @@ export const HomeWrapper = styled.div<StyledProps>`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: ${({ theme }) =>
+  background: ${({ theme }) =>
     theme === "light"
-      ? color.lightMode.chatBackground
-      : color.darkMode.chatBackground};
+      ? "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)"
+      : "linear-gradient(180deg, #0a0f1e 0%, #0f172a 100%)"};
 
   @media screen and (min-width: 869px) {
     display: flex;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledProps, color } from "../../../library";
+import { StyledProps } from "../../../library";
 
 export const Grow = styled.div`
   flex-grow: 1;
@@ -10,46 +10,37 @@ export const Grow = styled.div`
 `;
 
 export const StylesChatView = styled.div<StyledProps>`
-  padding: 20px;
+  padding: 16px 20px;
   height: 100%;
   overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    border-radius: 20px;
-  }
+  &::-webkit-scrollbar { width: 4px; }
   &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) =>
-      theme === "light" ? "darkgray" : color.darkGreyDark};
+    background: ${({ theme }) => theme === "light" ? "#e2e8f0" : "#334155"};
     border-radius: 10px;
   }
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkMode.background};
-    border-radius: 0 0 20px 0;
-  }
+  &::-webkit-scrollbar-track { background: transparent; }
 `;
 
 export const Text = styled.p<StyledProps>`
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.text};
-  font-size: calc(18 / 16 * 1rem);
-  @media screen and (max-width: 440px) {
-    font-size: 1rem;
-  }
+  color: ${({ theme }) => theme === "light" ? "#94a3b8" : "#475569"};
+  font-size: 0.95rem;
+  margin-top: 12px;
+  text-align: center;
 `;
 
 export const Image = styled.img`
-  width: 90px;
-  margin-bottom: 20px;
+  width: 80px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+
   @media screen and (max-width: 440px) {
-    width: 80px;
+    width: 60px;
   }
 `;
 
 export const MiniWrapper = styled.div`
-  gap: 1px;
+  gap: 2px;
   padding: 0 8px;
   display: flex;
   justify-content: end;

@@ -12,10 +12,14 @@ import {
   ChatButton,
   Container,
   StyledNavbar,
+  NavBrand,
+  NavLogo,
+  NavTitle,
   PrimaryContainer,
   ProfileButton,
   ProfileButtonContainer,
   ProfileMenu,
+  MenuButton,
   ProfilePicture,
   SecondaryContainer,
   ShowProfileButton,
@@ -60,8 +64,8 @@ export function Sidebar() {
   const signOutUser = async () => {
     try {
       await signOut(firebaseAuth);
-      toast.success("User signed out successfully");
-    } catch (error) {
+      toast.success("Signed out successfully");
+    } catch {
       toast.error("Something went wrong");
     }
   };
@@ -71,33 +75,20 @@ export function Sidebar() {
     setIsSettingOpen(false);
   };
 
-  // Preload the profile picture
   useEffect(() => {
     if (currentUser?.photoURL) {
       const img = new Image();
       img.src = IMAGE_PROXY(currentUser.photoURL);
     }
   }, [currentUser]);
-  
 
   return (
     <StyledSideBar theme={theme}>
-      
       <StyledNavbar theme={theme}>
-      
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            fontSize: "calc(24 / 16 * 1rem)",
-            fontWeight: 500,
-            color: theme === "light" ? "#868686" : "#868686",
-          }}
-        >
-          Samvaad
-        </Link>
-        
-
+        <NavBrand>
+          <NavLogo>💬</NavLogo>
+          <NavTitle theme={theme}>Samvaad</NavTitle>
+        </NavBrand>
 
         <Wrapper theme={theme}>
           <PrimaryContainer theme={theme}>
@@ -112,30 +103,28 @@ export function Sidebar() {
           <SecondaryContainer theme={theme}>
             <ProfileButtonContainer>
               <ProfileButton
-                onClick={() => {
-                  setIsSettingOpen(!isSettingOpen);
-                }}
+                onClick={() => setIsSettingOpen(!isSettingOpen)}
               >
                 <ProfilePicture
                   src={IMAGE_PROXY(currentUser?.photoURL ?? DEFAULT_AVATAR)}
                   alt="profile picture"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = DEFAULT_AVATAR;
+                  }}
                 />
               </ProfileButton>
 
               {isSettingOpen && (
                 <ClickAwayListener onClickAway={() => setIsSettingOpen(false)}>
                   <ProfileMenu theme={theme}>
-                    <ShowProfileButton
-                      theme={theme}
-                      onClick={handleProfileClick}
-                    >
-                      Profile
+                    <ShowProfileButton theme={theme} onClick={handleProfileClick}>
+                      👤 Profile
                     </ShowProfileButton>
                     <ThemeButton theme={theme} onClick={toggleTheme}>
-                      {theme === "light" ? "Dark mode" : "Light mode"}
+                      {theme === "light" ? "🌙 Dark mode" : "☀️ Light mode"}
                     </ThemeButton>
                     <SignOutButton theme={theme} onClick={signOutUser}>
-                      Sign out
+                      🚪 Sign out
                     </SignOutButton>
                   </ProfileMenu>
                 </ClickAwayListener>
@@ -144,7 +133,6 @@ export function Sidebar() {
           </SecondaryContainer>
         </Wrapper>
       </StyledNavbar>
-      
 
       {isProfileOpen && theme && (
         <Profile
@@ -166,16 +154,16 @@ export function Sidebar() {
         <Spinner />
       ) : error ? (
         <Container>
-          <Text>Something went wrong</Text>
+          <Text theme={theme}>Something went wrong</Text>
         </Container>
       ) : data?.empty ? (
         <Container>
-          <Text>No conversation found</Text>
+          <Text theme={theme}>No conversations yet</Text>
           <SelectConversationButton
             theme={theme}
             onClick={() => setConversationModalOpen(true)}
           >
-            Create one
+            + Start a conversation
           </SelectConversationButton>
         </Container>
       ) : (
@@ -190,7 +178,6 @@ export function Sidebar() {
           ))}
         </SelectConversationContainer>
       )}
-      
     </StyledSideBar>
   );
 }

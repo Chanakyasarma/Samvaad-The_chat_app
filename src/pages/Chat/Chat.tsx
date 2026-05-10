@@ -7,9 +7,8 @@ import { useDocumentQuery } from "../../hooks";
 import { ConversationInfoType, ReplyInfoType } from "../../library";
 import { firebaseFirestore } from "../../firebase/firebaseConfig";
 import { useTheme, useUserStore } from "../../hooks";
-import { Grow } from "@mui/material";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Wrapper, MobileHide, ChatWrapper, Text } from "./Style";
+import { Wrapper, MobileHide, ChatWrapper, Text, Grow } from "./Style";
 import { Spinner } from "../../components/Core";
 import { ChatHeader, ChatInputSection, ChatView } from "../../components/Chat";
 

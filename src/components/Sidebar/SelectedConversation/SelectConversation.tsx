@@ -15,6 +15,12 @@ import {
   Image,
 } from "./Style";
 
+const DEFAULT = "/user.png";
+const fallback = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  (e.target as HTMLImageElement).src = DEFAULT;
+};
+const safeImg = (url?: string) => (url ? IMAGE_PROXY(url) : DEFAULT);
+
 type SelectConversationProps = {
   theme: string | null;
   conversation: ConversationInfoType;
@@ -39,15 +45,15 @@ export function SelectConversation({
   if (loading && theme)
     return (
       <Flex theme={theme}>
-        <Skeleton variant="circular" width={65} height={65} sx={{ mr: 1.5 }} />
-        <div>
-          <Skeleton
-            width={100}
-            height={15}
-            sx={{ mb: 1 }}
-            variant="rectangular"
-          />
-          <Skeleton variant="rectangular" width={140} height={15} />
+        <Skeleton
+          variant="circular"
+          width={50}
+          height={50}
+          sx={{ mr: 1.5, flexShrink: 0, bgcolor: "#334155", borderRadius: "14px" }}
+        />
+        <div style={{ flex: 1 }}>
+          <Skeleton width={100} height={14} sx={{ mb: 1, bgcolor: "#334155" }} variant="rectangular" />
+          <Skeleton variant="rectangular" width={140} height={12} sx={{ bgcolor: "#1e293b" }} />
         </div>
       </Flex>
     );
@@ -56,30 +62,25 @@ export function SelectConversation({
   if (conversation.users.length === 2 && theme)
     return (
       <Link to={`/${conversationId}`} style={{ textDecoration: "none" }}>
-        <Flex
-          theme={theme}
-          className={conversationId === id ? "active" : "not-active"}
-        >
-          <Image src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)|| '/user.png'} alt="" />
-          <div>
+        <Flex theme={theme} className={conversationId === id ? "active" : "not-active"}>
+          <Image
+            src={safeImg(filtered?.[0]?.data()?.photoURL)}
+            onError={fallback}
+            alt=""
+          />
+          <Relative>
             <Name theme={theme}>{filtered?.[0].data()?.displayName}</Name>
             {lastMessageLoading ? (
-              <Skeleton width={100} height={15} variant="rectangular" />
+              <Skeleton width={100} height={12} variant="rectangular" sx={{ bgcolor: "#1e293b" }} />
             ) : (
               <LastMessage theme={theme}>{lastMessage?.message}</LastMessage>
             )}
-          </div>
-          {!lastMessageLoading && (
-            <>
-              {lastMessage?.lastMessageId !== null &&
-                lastMessage?.lastMessageId !==
-                  conversation.seen[currentUser?.uid as string] && (
-                  <Notify>
-                    <BsCircleFill />
-                  </Notify>
-                )}
-            </>
-          )}
+          </Relative>
+          {!lastMessageLoading &&
+            lastMessage?.lastMessageId !== null &&
+            lastMessage?.lastMessageId !== conversation.seen[currentUser?.uid as string] && (
+              <Notify><BsCircleFill /></Notify>
+            )}
         </Flex>
       </Link>
     );
@@ -88,28 +89,28 @@ export function SelectConversation({
   return (
     <Link to={`/${conversationId}`} style={{ textDecoration: "none" }}>
       {theme && (
-        <Flex
-          theme={theme}
-          className={conversationId === id ? "active" : "not-active"}
-        >
+        <Flex theme={theme} className={conversationId === id ? "active" : "not-active"}>
           {conversation?.group?.groupImage ? (
-            <Image src={conversation.group.groupImage} alt="" />
+            <Image
+              src={conversation.group.groupImage}
+              onError={fallback}
+              alt=""
+            />
           ) : (
-            <Relative>
+            <Relative style={{ marginLeft: "32px", marginRight: "12px" }}>
               <ImagePrimary
-                className={
-                  conversationId === id ? "not-active-border" : "active-border"
-                }
-                src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)|| '/user.png'}
+                src={safeImg(filtered?.[0]?.data()?.photoURL)}
+                onError={fallback}
                 alt=""
               />
               <ImageSecondary
-                src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)|| '/user.png'}
+                src={safeImg(filtered?.[1]?.data()?.photoURL)}
+                onError={fallback}
                 alt=""
               />
             </Relative>
           )}
-          <div>
+          <Relative style={{ flex: 1, minWidth: 0, position: "static" }}>
             <Name theme={theme}>
               {conversation?.group?.groupName ||
                 filtered
@@ -118,22 +119,16 @@ export function SelectConversation({
                   .join(", ")}
             </Name>
             {lastMessageLoading ? (
-              <Skeleton width={100} height={15} variant="rectangular" />
+              <Skeleton width={100} height={12} variant="rectangular" sx={{ bgcolor: "#1e293b" }} />
             ) : (
-              <LastMessage theme={theme}> {lastMessage?.message}</LastMessage>
+              <LastMessage theme={theme}>{lastMessage?.message}</LastMessage>
             )}
-          </div>
-          {!lastMessageLoading && (
-            <>
-              {lastMessage?.lastMessageId !== null &&
-                lastMessage?.lastMessageId !==
-                  conversation.seen[currentUser?.uid as string] && (
-                  <Notify>
-                    <BsCircleFill />
-                  </Notify>
-                )}
-            </>
-          )}
+          </Relative>
+          {!lastMessageLoading &&
+            lastMessage?.lastMessageId !== null &&
+            lastMessage?.lastMessageId !== conversation.seen[currentUser?.uid as string] && (
+              <Notify><BsCircleFill /></Notify>
+            )}
         </Flex>
       )}
     </Link>
