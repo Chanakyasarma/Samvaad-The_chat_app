@@ -1,60 +1,72 @@
 import styled from "styled-components";
 import { StyledProps, color } from "../../library";
-// Define variables
 
 export const StyledSideBar = styled.div<StyledProps>`
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  border-right: none;
   position: relative;
-  background: #000a1d;
-  
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    border-radius: 20px;
-  }
+  background: ${({ theme }) =>
+    theme === "light" ? "#ffffff" : "#111827"};
+  border-right: 1px solid ${({ theme }) =>
+    theme === "light" ? "#e2e8f0" : "#1e293b"};
+
+  &::-webkit-scrollbar { width: 4px; }
   &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) =>
-      theme === "light" ? "darkgray" : color.darkGreyDark};
+    background: ${({ theme }) => theme === "light" ? "#e2e8f0" : "#334155"};
     border-radius: 10px;
   }
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) =>
-      theme === "light" ? color.lightMode.background : color.darkMode.background};
-    border-radius: 0 0 20px 0;
-  }
-  
+  &::-webkit-scrollbar-track { background: transparent; }
+
   @media screen and (min-width: 869px) {
-    width: 350px;
-    border-right: 1px solid ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkMode.border};
+    width: 340px;
   }
 `;
 
 export const StyledNavbar = styled.div<StyledProps>`
   z-index: 2;
-  height: 80px;
+  height: 72px;
   width: 100%;
-  position: fixed;
+  position: sticky;
+  top: 0;
   display: flex;
-  padding: 0 30px;
+  padding: 0 20px;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.background : color.darkMode.background};
+  background: ${({ theme }) => theme === "light" ? "#ffffff" : "#111827"};
   border-bottom: 1px solid ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.darkMode.border};
-  border-right: 1px solid ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.darkMode.border};
+    theme === "light" ? "#e2e8f0" : "#1e293b"};
+  backdrop-filter: blur(10px);
 
   @media screen and (min-width: 869px) {
-    width: 350px;
+    width: 340px;
   }
 `;
 
+export const NavBrand = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const NavLogo = styled.div`
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+`;
+
+export const NavTitle = styled.span<StyledProps>`
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme === "light" ? "#0f172a" : "#f1f5f9"};
+`;
 
 export const Wrapper = styled.div<StyledProps>`
   display: flex;
@@ -67,105 +79,77 @@ export const ProfileButtonContainer = styled.div`
 export const ProfileButton = styled.button`
   border: none;
   background-color: transparent;
+  padding: 2px;
 `;
 
 export const ProfileMenu = styled.div<StyledProps>`
-  z-index: 1;
+  z-index: 10;
   position: absolute;
-  top: 70px;
-  right: -27px;
-  width: 150px;
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.white : color.darkMode.border};
-  border: 1px solid ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.lightGreyDark};
-  border-radius: 3px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  top: 52px;
+  right: -4px;
+  width: 180px;
+  background: ${({ theme }) => theme === "light" ? "#ffffff" : "#1e293b"};
+  border: 1px solid ${({ theme }) => theme === "light" ? "#e2e8f0" : "#334155"};
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  overflow: hidden;
+  padding: 6px;
 `;
 
-export const ShowProfileButton = styled.button<StyledProps>`
+export const MenuButton = styled.button<StyledProps>`
   border: none;
   width: 100%;
-  font-size: 1rem;
-  padding: 10px 12px;
-  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: left;
+  transition: all 0.15s ease;
   background-color: transparent;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.navText : color.darkMode.navText};
+  color: ${({ theme }) => theme === "light" ? "#475569" : "#94a3b8"};
+
   &:hover {
-    color: ${({ theme }) =>
-      theme === "light"
-        ? color.lightMode.navHoverText
-        : color.darkMode.navHoverText};
+    background: ${({ theme }) => theme === "light" ? "#f1f5f9" : "#334155"};
+    color: ${({ theme }) => theme === "light" ? "#1e293b" : "#e2e8f0"};
   }
 `;
 
-export const ThemeButton = styled.button<StyledProps>`
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px 12px;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.navText : color.darkMode.navText};
-  border-top: 1px solid ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.lightGreyDark};
-  border-bottom: 1px solid ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.lightGreyDark};
-  &:hover {
-    color: ${({ theme }) =>
-      theme === "light"
-        ? color.lightMode.navHoverText
-        : color.darkMode.navHoverText};
-  }
-`;
-
-export const SignOutButton = styled.button<StyledProps>`
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px 12px;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.navText : color.darkMode.navText};
-  &:hover {
-    color: ${({ theme }) =>
-      theme === "light"
-        ? color.lightMode.navHoverText
-        : color.darkMode.navHoverText};
-  }
+export const ShowProfileButton = MenuButton;
+export const ThemeButton = MenuButton;
+export const SignOutButton = styled(MenuButton)`
+  color: #ef4444;
+  &:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
 `;
 
 export const ChatButton = styled.button<StyledProps>`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: none;
   display: flex;
-  margin-right: 15px;
-  border-radius: 10%;
+  border-radius: 12px;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.navText : color.darkMode.navText};
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.darkMode.border};
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme === "light" ? "#64748b" : "#94a3b8"};
+  background-color: ${({ theme }) => theme === "light" ? "#f1f5f9" : "#1e293b"};
   transition: all 0.2s ease;
-  :hover {
-    color: ${({ theme }) =>
-      theme === "light"
-        ? color.lightMode.navHoverText
-        : color.darkMode.navHoverText};
+  margin-right: 6px;
+
+  &:hover {
+    background: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(79,142,247,0.3);
   }
 `;
 
 export const ProfilePicture = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 10%;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
   object-fit: cover;
+  border: 2px solid transparent;
+  background: linear-gradient(#111, #111) padding-box,
+              linear-gradient(135deg, #4f8ef7, #8b5cf6) border-box;
 `;
 
 export const SecondaryContainer = styled.div<StyledProps>`
@@ -179,36 +163,36 @@ export const PrimaryContainer = styled.div<StyledProps>`
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 80px;
+  padding-top: 12px;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const Text = styled.p<StyledProps>`
-  margin: 30px 0;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.text};
+  margin: 20px 0;
+  color: ${({ theme }) => theme === "light" ? "#94a3b8" : "#475569"};
+  font-size: 0.9rem;
 `;
 
 export const SelectConversationButton = styled.button<StyledProps>`
-  width: 150px;
+  width: auto;
   border: none;
-  padding: 10px;
+  padding: 11px 22px;
   font-size: 0.9rem;
-  border-radius: 4px;
+  font-weight: 600;
+  border-radius: 12px;
   transition: all 0.2s ease;
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.primary : color.primary};
-  color: ${({ theme }) => (theme === "light" ? color.white : color.white)};
+  background: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(79,142,247,0.35);
 
   &:hover {
-    background-color: ${({ theme }) =>
-      theme === "light"
-        ? color.lightMode.primaryHoverLight
-        : color.darkMode.primaryHoverDark};
+    box-shadow: 0 8px 25px rgba(79,142,247,0.5);
+    transform: translateY(-1px);
   }
 `;
 
 export const SelectConversationContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 20px;
+  padding: 0 20px;
 `;
