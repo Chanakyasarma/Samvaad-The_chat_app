@@ -5,15 +5,14 @@ export const Wrapper = styled.div<StyledProps>`
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: ${({ theme }) =>
-    theme === "light" ? "#f1f5f9" : "#0a0f1e"};
+  background: ${({ theme }) => theme === "light" ? "#f1f5f9" : "#0a0f1e"};
 `;
 
 export const ChatWrapper = styled.div`
   display: flex;
-  flex-grow: 1;
+  flex: 1;
+  min-width: 0;
   height: 100vh;
-  align-items: stretch;
   flex-direction: column;
   overflow: hidden;
 `;
@@ -36,11 +35,16 @@ export const Line = styled.div`
 `;
 
 export const Grow = styled.div`
-  flex-grow: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 `;
 
 export const MobileHide = styled.div`
   display: none;
+  flex-shrink: 0;
   @media screen and (min-width: 869px) {
     display: block;
   }

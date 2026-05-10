@@ -1,22 +1,30 @@
 import styled from "styled-components";
 import { StyledProps } from "../../../library";
 
+/* Takes up all remaining vertical space between header and input */
 export const Grow = styled.div`
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 `;
 
 export const StylesChatView = styled.div<StyledProps>`
-  padding: 16px 20px;
-  height: 100%;
+  flex: 1;
+  min-height: 0;          /* critical — lets flex child shrink below content size */
   overflow-y: auto;
+  padding: 16px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) =>
+    theme === "light"
+      ? "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)"
+      : "linear-gradient(180deg, #0a0f1e 0%, #0f172a 100%)"};
 
   &::-webkit-scrollbar { width: 4px; }
   &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme === "light" ? "#e2e8f0" : "#334155"};
+    background: ${({ theme }) => theme === "light" ? "#cbd5e1" : "#334155"};
     border-radius: 10px;
   }
   &::-webkit-scrollbar-track { background: transparent; }
@@ -32,16 +40,13 @@ export const Text = styled.p<StyledProps>`
 export const Image = styled.img`
   width: 80px;
   margin-bottom: 16px;
-  opacity: 0.5;
-
-  @media screen and (max-width: 440px) {
-    width: 60px;
-  }
+  opacity: 0.4;
+  @media screen and (max-width: 440px) { width: 60px; }
 `;
 
 export const MiniWrapper = styled.div`
   gap: 2px;
-  padding: 0 8px;
+  padding: 0 8px 4px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 `;
