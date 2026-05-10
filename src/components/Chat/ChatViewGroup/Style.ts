@@ -1,43 +1,41 @@
 import styled from "styled-components";
-import { StyledProps, color } from "../../../library";
+import { StyledProps } from "../../../library";
 
 export const AddMemberButton = styled.div<StyledProps>`
   color: white;
-  padding: 3px 5px;
-  border-radius: 2px;
-  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
   border: none;
-  transition: all 0.2s ease;
-  background-color: #006992;
-  color: white;
+  background: linear-gradient(135deg, #4f8ef7, #6d6cf7);
   display: flex;
   align-items: center;
-
-  &:hover {
-    background-color: #5aa126;
-  }
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover { box-shadow: 0 4px 12px rgba(79,142,247,0.4); }
 `;
+
 export const Info = styled.div<StyledProps>`
   text-align: center;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.text};
+  font-size: 0.88rem;
+  color: ${({ theme }) => theme === "light" ? "#64748b" : "#64748b"};
 `;
 
 export const Header = styled.div`
   display: flex;
-  padding: 20px 0;
+  padding: 16px 0;
   position: relative;
   align-items: center;
   justify-content: center;
 `;
 
-export const Title = styled.h1`
-  font-weight: 600;
-  font-size: calc(20 / 16 * 1rem);
-  @media screen and (max-width: 390px) {
-    font-size: calc(18 / 16 * 1rem);
-  }
+export const Title = styled.h1<StyledProps>`
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: ${({ theme }) => theme === "light" ? "#0f172a" : "#f1f5f9"};
 `;
+
 export const Buttons = styled.div<StyledProps>`
   display: flex;
   align-items: center;
@@ -45,80 +43,52 @@ export const Buttons = styled.div<StyledProps>`
 `;
 
 export const CloseButton = styled.button`
-  top: 10px;
-  right: 10px;
+  top: 14px;
+  right: 14px;
   border: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  background-color: transparent;
+  background: #334155;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover { background: #475569; color: #e2e8f0; }
 `;
 
 export const Button = styled.button<StyledProps & { isActive?: boolean }>`
   width: 100%;
-  padding: 6px;
-  font-size: 1rem;
+  padding: 8px;
+  font-size: 0.88rem;
   border: none;
   white-space: nowrap;
-  color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.text : color.darkMode.text};
-  margin: 20px 0;
+  cursor: pointer;
+  margin: 16px 0;
   transition: all 0.2s ease;
-  justify-content: space-between;
-  background-color: ${({ theme }) =>
-    theme === "light" ? color.lightMode.border : color.darkGreyDark};
-  border: 1px solid
-    ${({ theme }) =>
-      theme === "light" ? color.lightMode.border : color.darkGreyDark};
+  color: ${({ isActive, theme }) =>
+    isActive
+      ? theme === "light" ? "#1e293b" : "#e2e8f0"
+      : theme === "light" ? "#64748b" : "#64748b"};
+  background: ${({ isActive, theme }) =>
+    isActive
+      ? theme === "light" ? "#e0edff" : "rgba(79,142,247,0.15)"
+      : theme === "light" ? "#f1f5f9" : "#1e293b"};
+  border: 1.5px solid ${({ isActive }) =>
+    isActive ? "#4f8ef7" : "transparent"};
 
-  ${({ isActive, theme }) =>
-    isActive &&
-    `
-    color: ${theme === "light" ? color.lightMode.title : color.darkMode.title};
-    border: 1px solid ${
-      theme === "light" ? color.lightMode.text : color.darkMode.text
-    };
-  `}
+  &:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+  &:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
 
-  &:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.text : color.darkMode.text};
-  }
-
-  &:nth-child(2) {
-    border-right: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.text : color.darkMode.text};
-    border-left: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.text : color.darkMode.text};
-  }
-
-  &:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-left: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.text : color.darkMode.text};
-  }
-
-  &:hover {
-    border: 1px solid
-      ${({ theme }) =>
-        theme === "light" ? color.lightMode.text : color.darkMode.text};
-  }
-
-  @media screen and (max-width: 390px) {
-    font-size: 0.85rem;
-  }
+  &:hover { border-color: #4f8ef7; }
 `;
 
-// MEMBERS
-
 export const MemberContainer = styled.div`
-  gap: 25px;
+  gap: 12px;
   display: flex;
   flex-direction: column;
 `;
@@ -130,76 +100,73 @@ export const MemberWrapper = styled.div`
   justify-content: space-between;
 `;
 
+export const UserProfilePicture = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 10px;
+  background: #1e293b;
+`;
+
 export const MemberItem = styled.div<StyledProps>`
   display: flex;
   align-items: center;
-
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     white-space: nowrap;
-    color: ${({ theme }) =>
-      theme === "light" ? color.lightMode.title : color.darkMode.title};
+    font-weight: 500;
+    color: ${({ theme }) => theme === "light" ? "#1e293b" : "#e2e8f0"};
   }
 `;
 
 export const MembersButtons = styled.div<StyledProps>`
-  gap: 3px;
+  gap: 4px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
 
-  justify-content: end;
   button {
-    padding: 5px 2px;
-    width: 115px;
-    border-radius: 2px;
-    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
     border: none;
+    cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
   }
 `;
 
 export const LeaveGroupButton = styled.button<StyledProps>`
-  background-color: #ff5b3a;
-  color: white;
-  &:hover {
-    background-color: #ef3e15;
-  }
+  background: rgba(239,68,68,0.15);
+  color: #ef4444;
+  &:hover { background: rgba(239,68,68,0.25); }
 `;
 
 export const KickGroupButton = styled.button<StyledProps>`
-  background-color: #ff9a00;
-  color: white;
-  &:hover {
-    background-color: #f98a00;
-  }
+  background: rgba(249,115,22,0.15);
+  color: #f97316;
+  &:hover { background: rgba(249,115,22,0.25); }
 `;
 
 export const MakeAdminButton = styled.button<StyledProps>`
-  background-color: #006992;
-  color: white;
-  &:hover {
-    background-color: #5aa126;
-  }
+  background: rgba(79,142,247,0.15);
+  color: #4f8ef7;
+  &:hover { background: rgba(79,142,247,0.25); }
 `;
 
 export const RemooveAdminButton = styled.button<StyledProps>`
-  color: white;
-  padding: 3px 5px;
-  border-radius: 2px;
-  font-size: 0.9rem;
-  border: none;
-  transition: all 0.2s ease;
-  background-color: #ff9a00;
-  color: white;
-  &:hover {
-    background-color: #f98a00;
-  }
+  background: rgba(249,115,22,0.15);
+  color: #f97316;
+  &:hover { background: rgba(249,115,22,0.25); }
 `;
 
 export const AdminBadge = styled.span<StyledProps>`
-  font-size: 0.9rem;
-  background-color: #daf3ff;
+  font-size: 0.75rem;
+  background: rgba(79,142,247,0.15);
   padding: 2px 8px;
-  border-radius: 2px;
-  color: #177ead;
+  border-radius: 6px;
+  color: #4f8ef7;
+  font-weight: 600;
 `;

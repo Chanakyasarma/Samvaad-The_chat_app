@@ -51,7 +51,7 @@ export const Relative = styled.div`
   padding-right: 8px;
 `;
 
-export const ImagePrimary = styled.img`
+export const ImagePrimary = styled.img<StyledProps>`
   top: -4px;
   left: -28px;
   z-index: 1;
