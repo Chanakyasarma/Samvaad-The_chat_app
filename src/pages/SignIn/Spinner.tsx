@@ -1,31 +1,47 @@
-// Spinner.tsx
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; // Full screen height
+const pulse = keyframes`
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
 `;
 
-const Spinner = styled.div`
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #868686;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+const Overlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  gap: 16px;
+`;
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+const Logo = styled.div`
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  animation: ${pulse} 1.5s ease-in-out infinite;
+  box-shadow: 0 10px 40px rgba(79,142,247,0.4);
+`;
+
+const Text = styled.p`
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 500;
 `;
 
 export default function LoadingSpinner() {
   return (
-    <SpinnerWrapper>
-      <Spinner />
-    </SpinnerWrapper>
+    <Overlay>
+      <Logo>💬</Logo>
+      <Text>Loading...</Text>
+    </Overlay>
   );
 }
