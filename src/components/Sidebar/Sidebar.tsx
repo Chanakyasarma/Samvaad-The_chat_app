@@ -2,7 +2,7 @@ import ClickAwayListener from "react-click-away-listener";
 import { query, collection, orderBy, where } from "firebase/firestore";
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { firebaseAuth, firebaseFirestore } from "../../firebase/firebaseConfig";
-import { Link } from "react-router-dom";
+
 import { LuPlus } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
@@ -19,7 +19,6 @@ import {
   ProfileButton,
   ProfileButtonContainer,
   ProfileMenu,
-  MenuButton,
   ProfilePicture,
   SecondaryContainer,
   ShowProfileButton,

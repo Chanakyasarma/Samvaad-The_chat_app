@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledProps, color } from "../../../library";
+import { StyledProps } from "../../../library";
 import { Link } from "react-router-dom";
 
 export const Header = styled.div<StyledProps>`

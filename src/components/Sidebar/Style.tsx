@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledProps, color } from "../../library";
+import { StyledProps } from "../../library";
 
 export const StyledSideBar = styled.div<StyledProps>`
   width: 100%;
